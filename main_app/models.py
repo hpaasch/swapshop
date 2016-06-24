@@ -20,6 +20,12 @@ LAND = 'Land'
 WATER = 'Water'
 
 
+class Category(models.Model):
+    new_category = models.CharField(max_length=30)
+    choose_main = models.ForeignKey('self', null=True, blank=True)
+
+    def __str__(self):
+        return self.new_category
 
 class Listing(models.Model):
     LOCATIONS = ((DENVER, 'Denver'),
@@ -29,17 +35,6 @@ class Listing(models.Model):
         (CORNELIUS, 'Cornelius'),
         (HUNTERSVILLE, 'Huntersville'),
         )
-    CATEGORIES = ((WATERCRAFT, 'Watercraft'),
-        (MOTOR, 'Motor'),
-        (SAIL, 'Sail'),
-        (PADDLE, 'Paddle'),
-        (GEAR, 'Gear'),
-        (FISHING, 'Fishing'),
-        (RECREATION, 'Recreation'),
-        (SERVICES, 'Services'),
-        (LAND, 'Land'),
-        (WATER, 'Water'),
-        )
     title = models.CharField(max_length=40)
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
@@ -47,9 +42,12 @@ class Listing(models.Model):
     location = models.CharField(max_length=15, choices=LOCATIONS)
     seller = models.ForeignKey(User)
     created = models.DateTimeField(auto_now_add=True)
-    category = models.CharField(max_length=15, choices=CATEGORIES)
+    pick_category = models.ForeignKey(Category, related_name="cat_choice")
     # Free
     # categories
+
+    def __str__(self):
+        return self.title
 
     @property
     def photo_url(self):
