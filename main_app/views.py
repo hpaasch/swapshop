@@ -9,10 +9,8 @@ class IndexView(ListView):
     model = Category
     template_name = 'index.html'
 
-    # def get_context_data(self, **kwargs):
-    #     context = super().get_context_data(**kwargs)
-    #     context['category_list'] = Category.objects.all()
-    #     return context
+    def get_queryset(self):
+        return Category.objects.filter(choose_main=None)
 
 
 class ListingCreateView(CreateView):
@@ -36,3 +34,8 @@ class AccountProfileView(ListView):
 class FullListView(ListView):
     model = Listing
     template_name = 'full_list.html'
+
+
+class ListingUpdateView(UpdateView):
+    model = Listing
+    fields = ['title', 'description', 'price', 'photo', 'location', 'pick_category']

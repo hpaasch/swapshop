@@ -6,9 +6,9 @@
   <h4>Nothing over $9,999.99</h4>
     <div class="col-md-6">
         {% for category in object_list %}
-            <h4>{{ category.choose_main }}</h4>
+            <h4>{{ category.new_category }}</h4>
                 {% for category in category.sub_choice.all %}
-                    <li>{{ category.new_category }}</li>
+                <li>{{ category.new_category }}</li>
                 {% endfor %}
         {% endfor %}
     </div>
