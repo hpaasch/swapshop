@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
+<h3>Make a new listing</h3>
   <form class="" action="{% url 'listing_create_view' %}" method="post"  enctype="multipart/form-data">
     {% csrf_token %}
     {{ form.as_p }}

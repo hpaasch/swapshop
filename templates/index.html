@@ -1,17 +1,15 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>LKN SwapShop on the way. Please check back. </h1>
+  <h1>Minnow Bucket Trading Post</h1>
+  <h3>Buy and sell stuff you need to be on the lake</h3>
+  <h4>Nothing over $9,999.99</h4>
     <div class="col-md-6">
-      {% for object in object_list %}
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h3 class="panel-title">{{ object.category}}: {{ object.title }}</h3>
-            </div>
-            <div class="panel-body">
-                <img class='thumb' src="{{ object.listing.photo_url }}" alt="" />
-                {{ object.description }} ${{ object.price }}
-            </div>
-          </div>
-      {% endfor %}
+        {% for category in object_list %}
+            <h4>{{ category.choose_main }}</h4>
+                {% for category in category.sub_choice.all %}
+                    <li>{{ category.new_category }}</li>
+                {% endfor %}
+        {% endfor %}
+    </div>
 {% endblock %}

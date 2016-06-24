@@ -10,6 +10,7 @@ urlpatterns = [
     url(r'^', include('django.contrib.auth.urls')),
     url(r'^$', views.IndexView.as_view(), name='index_view'),
     url(r'^listing_create/$', views.ListingCreateView.as_view(), name='listing_create_view'),
-    url(r'', views.AccountProfileView.as_view(), name='account_profile_view'),
+    url(r'^accounts/profile/$', views.AccountProfileView.as_view(), name='account_profile_view'),
+    url(r'^full_list/$', views.FullListView.as_view(), name='full_list_view'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

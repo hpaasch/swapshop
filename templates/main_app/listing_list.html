@@ -2,12 +2,17 @@
 
 {% block content %}
   <h3>Your listings</h3>
-  <ul>
     {% for object in object_list %}
-    <li>
-      {{ object.title }}
-    </li>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{ object.title }}</h3>
+        </div>
+        <div class="panel-body">
+            <img class='thumb' src="{{ object.photo_url }}" alt="" />
+            {{ object.description }} ${{ object.price }}
+        </div>
+      </div>
     {% endfor %}
-  </ul>
-
 {% endblock %}
+
+<!-- ADD UPDATE AND DELETE BUTTONS. track clicks? -->

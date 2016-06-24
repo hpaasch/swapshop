@@ -3,11 +3,16 @@ from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 
-from main_app.models import Listing
+from main_app.models import Listing, Category
 
 class IndexView(ListView):
-    model = Listing
+    model = Category
     template_name = 'index.html'
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context['category_list'] = Category.objects.all()
+    #     return context
 
 
 class ListingCreateView(CreateView):
@@ -26,3 +31,8 @@ class AccountProfileView(ListView):
 
     def get_queryset(self):
         return Listing.objects.filter(seller=self.request.user)
+
+
+class FullListView(ListView):
+    model = Listing
+    template_name = 'full_list.html'
