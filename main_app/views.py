@@ -12,10 +12,17 @@ class IndexView(ListView):
 
 class ListingCreateView(CreateView):
     model = Listing
-    fields = ['title', 'description', 'price', 'photo', 'location']
+    fields = ['title', 'description', 'price', 'photo', 'location', 'category']
     success_url = reverse_lazy('index_view')
 
     def form_valid(self, form):
         listing = form.save(commit=False)
         listing.seller = self.request.user
         return super().form_valid(form)
+
+
+class AccountProfileView(ListView):
+    model = Listing
+
+    def get_queryset(self):
+        return Listing.objects.filter(seller=self.request.user)
