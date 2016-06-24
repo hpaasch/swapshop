@@ -27,6 +27,9 @@ class Category(models.Model):
     def __str__(self):
         return self.new_category
 
+    class Meta:
+        verbose_name_plural = "Categories"
+
 class Listing(models.Model):
     LOCATIONS = ((DENVER, 'Denver'),
         (SHERRILLSFORD, 'SherrillsFord'),

@@ -12,7 +12,7 @@ class IndexView(ListView):
 
 class ListingCreateView(CreateView):
     model = Listing
-    fields = ['title', 'description', 'price', 'photo', 'location', 'category']
+    fields = ['title', 'description', 'price', 'photo', 'location', 'pick_category']
     success_url = reverse_lazy('index_view')
 
     def form_valid(self, form):
