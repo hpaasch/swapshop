@@ -6,7 +6,7 @@
   <h4>Nothing over $9,999.99</h4>
     <div class="col-md-6">
         {% for category in object_list %}
-            <h4>{{ category.new_category }}</h4>
+            <h4><a href="{% url 'category_list_view' category.pk %}">{{ category.new_category }}</a></h4>
                 {% for category in category.sub_choice.all %}
                 <li>{{ category.new_category }}</li>
                 {% endfor %}

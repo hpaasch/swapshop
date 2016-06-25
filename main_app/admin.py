@@ -1,12 +1,12 @@
 from django.contrib import admin
-from main_app.models import Listing, Category, TraderProfile
+from main_app.models import Listing, Category, TraderProfile, Location
 
 
 class ListingAdmin(admin.ModelAdmin):
     list_display = ['title', 'pick_category']
     search_fields = ['title', 'description']
 
-admin.site.register(Listing, ListingAdmin)
+admin.site.register(Listing)
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -16,14 +16,15 @@ class CategoryAdmin(admin.ModelAdmin):
     class Meta:
         ordering = ['choose_main']
 
-admin.site.register(Category, CategoryAdmin)
+admin.site.register(Category)
 
 
 class TraderProfileAdmin(admin.ModelAdmin):
-    list_display = ['trader', 'contact', 'preferred_location', 'primary_category']
+    list_display = ['trader', 'email_address', 'preferred_location', 'primary_category']
     search_fields = ['trader']
 
     class Meta:
         ordering = ['preferred_location']
 
-admin.site.register(TraderProfile, TraderProfileAdmin)
+admin.site.register(TraderProfile)
+admin.site.register(Location)

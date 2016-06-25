@@ -2,16 +2,16 @@
 
 {% block content %}
 <h1>Minnow Bucket Trading Post</h1>
-<h3>The full big list, unfiltered </h3>
+<h3>All Watercraft</h3>
   <div class="col-md-6">
     {% for object in object_list %}
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">{{ object.title }}</h3>
+            <h3 class="panel-title">{{ object.pick_category }} {{ object.title }}</h3>
           </div>
           <div class="panel-body">
               <img class='thumb' src="{{ object.photo_url }}" alt="" />
-              {{ object.description }} ${{ object.price }}
+              {{ object.description }} ${{ object.price }}  {{ object.seller }} />
           </div>
         </div>
     {% endfor %}

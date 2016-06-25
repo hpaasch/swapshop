@@ -1,20 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
+from django.db.models.signals import post_save  # very commonly used
+from django.dispatch import receiver  # goes with post_save and other signals
 
-DENVER = 'Denver'
-SHERRILLSFORD = 'SherrillsFord'
-MOORESVILLE = 'Mooresville'
-DAVIDSON = 'Davidson'
-CORNELIUS = 'Cornelius'
-HUNTERSVILLE = 'Huntersville'
 
-LOCATIONS = ((DENVER, 'Denver'),
-    (SHERRILLSFORD, 'SherrillsFord'),
-    (MOORESVILLE, 'Mooresville'),
-    (DAVIDSON, 'Davidson'),
-    (CORNELIUS, 'Cornelius'),
-    (HUNTERSVILLE, 'Huntersville'),
-    )
+class Location(models.Model):
+    city_choice = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.city_choice
 
 
 class Category(models.Model):
@@ -33,7 +27,7 @@ class Listing(models.Model):
     description = models.TextField()
     price = models.DecimalField(max_digits=6, decimal_places=2)
     photo = models.ImageField(upload_to='listing_photos', null=True, blank=True, verbose_name='Upload a photo')
-    location = models.CharField(max_length=15, choices=LOCATIONS)
+    city = models.ForeignKey(Location)
     seller = models.ForeignKey(User)
     created = models.DateTimeField(auto_now_add=True)
     pick_category = models.ForeignKey(Category)
@@ -53,8 +47,23 @@ class Listing(models.Model):
 
 
 class TraderProfile(models.Model):
-    trader = models.ForeignKey(User)  # could also use ('auth.User') to avoid import
-    preferred_location = models.CharField(max_length=15, choices=LOCATIONS)
-    primary_category = models.ForeignKey(Category, blank=True)
-    contact = models.EmailField(max_length=45, blank=True)
+    user = models.OneToOneField('auth.User')
+    preferred_location = models.ForeignKey(Location, null=True, blank=True)
+    primary_category = models.ForeignKey(Category, null=True, blank=True)
+    email_address = models.EmailField(max_length=45, null=True, blank=True)
     logo = models.ImageField(upload_to='logo_images', null=True, blank=True, verbose_name='Upload a logo')
+
+    @property
+    def logo_url(self):
+        if self.logo:
+            return self.logo.url
+        return 'http://static.tumblr.com/e7snt83/tU6m7t07k/pirate_patch2.jpg'
+
+
+@receiver(post_save, sender='auth.User')
+def create_user_profile(**kwargs):
+    created = kwargs.get('created')
+    instance = kwargs.get('instance')
+
+    if created:
+        TraderProfile.objects.create(user=instance)  # hooks profile to user

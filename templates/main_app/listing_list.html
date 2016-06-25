@@ -1,7 +1,14 @@
+<!-- /accounts/profile/-->
+
 {% extends "base.html" %}
 
 {% block content %}
-  <h3>Your listings</h3>
+  <h3>Welcome {{ request.user }}. </h3>
+  <h5>Preferred area: {{ request.user.traderprofile.preferred_location }}</h5>
+  <h5>Primary category: {{ request.user.traderprofile.primary_category }}</h5>
+  <h5>Email: {{ request.user.traderprofile.primary_category }}</h5>
+
+  <h3>Keep track of your listings here. </h3>
     {% for object in object_list %}
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -17,5 +24,3 @@
       </div>
     {% endfor %}
 {% endblock %}
-
-<!-- ADD UPDATE AND DELETE BUTTONS. track clicks? -->
