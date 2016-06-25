@@ -3,6 +3,8 @@
 {% extends "base.html" %}
 
 {% block content %}
+  <h1>this is listing_list.html file. supposed to show user's profile and listings</h1>
+
   <h3>Welcome {{ request.user }}. </h3>
   <h5>Preferred area: {{ request.user.traderprofile.preferred_location }}</h5>
   <h5>Primary category: {{ request.user.traderprofile.primary_category }}</h5>
