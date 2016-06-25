@@ -39,3 +39,5 @@ class FullListView(ListView):
 class ListingUpdateView(UpdateView):
     model = Listing
     fields = ['title', 'description', 'price', 'photo', 'location', 'pick_category']
+    template_name = 'listing_update.html'
+    success_url = reverse_lazy('account_profile_view')

@@ -1,5 +1,5 @@
 from django.contrib import admin
-from main_app.models import Listing, Category
+from main_app.models import Listing, Category, TraderProfile
 
 
 class ListingAdmin(admin.ModelAdmin):
@@ -16,6 +16,14 @@ class CategoryAdmin(admin.ModelAdmin):
     class Meta:
         ordering = ['choose_main']
 
-
-
 admin.site.register(Category, CategoryAdmin)
+
+
+class TraderProfileAdmin(admin.ModelAdmin):
+    list_display = ['trader', 'contact', 'preferred_location', 'primary_category']
+    search_fields = ['trader']
+
+    class Meta:
+        ordering = ['preferred_location']
+
+admin.site.register(TraderProfile, TraderProfileAdmin)

@@ -9,7 +9,9 @@
         </div>
         <div class="panel-body">
             <img class='thumb' src="{{ object.photo_url }}" alt="" />
-            {{ object.description }} ${{ object.price }}
+            {{ object.description }}
+            ${{ object.price }}
+            <a href="{% url 'listing_update_view' object.pk %}">Update listing</a>
         </div>
       </div>
     {% endfor %}
