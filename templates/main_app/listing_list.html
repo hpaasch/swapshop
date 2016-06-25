@@ -12,6 +12,7 @@
             {{ object.description }}
             ${{ object.price }}
             <a href="{% url 'listing_update_view' object.pk %}">Update listing</a>
+            <a href="{% url 'listing_delete_view' object.pk %}">Delete listing</a>
         </div>
       </div>
     {% endfor %}
