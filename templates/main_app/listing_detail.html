@@ -13,6 +13,9 @@
         <h4>Seller:</h4>
         <p> {{ object.seller }}, {{ object.seller.traderprofile.email_address }}</p>
         <img class='logo' src="{{ object.seller.traderprofile.logo_url }}" alt="" />
+        <br>
+        <br>
+        <p><a href="{% url 'full_list_view' %}">Go back to all listings.</a></p>
       </div>
     </div>
   </div>

@@ -71,8 +71,8 @@ class CategoryListView(ListView):
     template_name = 'main_app/category_list.html'
 
     def get_queryset(self, **kwargs):
-        main_cat_id = self.kwargs.get('catpk', None)
-        return Listing.objects.filter(pick_category_id=main_cat_id)  # BROKEN: object_list is empty
+        main_cat_id = self.kwargs.get('pk', None)
+        return Listing.objects.filter(pk=main_cat_id)  # BROKEN: object_list is empty
         # return Listing.objects.filter(pick_category=main_cat_id)  # BROKEN: object_list is empty
 
 
@@ -94,7 +94,7 @@ class CityListingsView(ListView):
     template_name = 'city_listings_view.html'
 
     def get_queryset(self, **kwargs):
-        city_name = self.kwargs.get('pk',None)
+        city_name = self.kwargs.get('pk', None)
         return Listing.objects.filter(city=city_name)
 
 
