@@ -1,14 +1,12 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <p>
-    <a href=" {% url 'index_view' %}">LIST Go back to all categories.</a>
+    <p><a href=" {% url 'index_view' %}">Go back to all categories.</a>
   </p>
   {% for object in object_list %}
     <div class="panel panel-default">
       <div class="panel-body">
-        <h4>{{ object.pick_category }}: <a href="{% url 'list_detail_view' object.pk %}">{{ object.title }}</a> </h4>
-        <h5>${{ object.price }}</h5>
+        <h4>{{ object.pick_category }}: <a href="{% url 'list_detail_view' object.pk %}">{{ object.title }}</a>, ${{ object.price }}</h4>
         <p>{{ object.description}}</p>
       </div>
     </div>
@@ -17,4 +15,7 @@
 
 <!-- Could not get the heading to list the object.
 
-<h2> {{ object_list.category.choose_main }}</h2>  -->
+<h2> {{ object_list.category.choose_main }}</h2>
+<h3>List view <a href="{% url 'subcat_thumb_view' object.pk %}">Thumbnail view</a> <a href="{% url 'subcat_gallery_view' object.pk %}">Gallery View</a></h3>
+
+ -->

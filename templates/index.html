@@ -8,9 +8,9 @@
         {% for category in object_list %}
             <h4>{{ category.new_category }}</h4>
                 {% for category in category.sub_choice.all %}
-                <li> {{ category.new_category }} <a href="{% url 'subcat_list_view' category.pk%}">list</a>
-                                                <a href="{% url 'subcat_thumb_view' category.pk%}">thumbnail</a>
-                                                <a href="{% url 'subcat_gallery_view' category.pk%}">gallery</a>
+                <li> {{ category.new_category }} <a href="{% url 'subcat_list_view' category.pk %}">list</a>
+                                                <a href="{% url 'subcat_thumb_view' category.pk %}">thumbnail</a>
+                                                <a href="{% url 'subcat_gallery_view' category.pk %}">gallery</a>
                 </li>
                 {% endfor %}
         {% endfor %}
