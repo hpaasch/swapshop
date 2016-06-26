@@ -6,10 +6,17 @@
   <h4>Nothing over $9,999.99</h4>
     <div class="col-md-6">
         {% for category in object_list %}
-            <h4><a href="{% url 'category_list_view' category.pk %}">{{ category.new_category }}</a></h4>
+            <h4>{{ category.new_category }}</h4>
                 {% for category in category.sub_choice.all %}
-                <li><a href="{% url 'subcat_list_view' category.pk%}">{{ category.new_category }}</a></li>
+                <li> {{ category.new_category }} <a href="{% url 'subcat_list_view' category.pk%}">list</a>
+                                                <a href="{% url 'subcat_thumb_view' category.pk%}">thumbnail</a>
+                                                <a href="{% url 'subcat_gallery_view' category.pk%}">gallery</a>
+                </li>
                 {% endfor %}
         {% endfor %}
     </div>
 {% endblock %}
+
+<!-- MOVED THIS HERE BECAUSE I WASN"T ABLE TO GET THE MAIN CATEGORY PAGE TO LIST THE ITEMS
+<h4><a href="{% url 'category_list_view' category.pk %}">{{ category.new_category }}</a></h4>
+-->

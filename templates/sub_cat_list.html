@@ -1,8 +1,20 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h2>subcategory {{ object_list.category.choose_main }}</h2> <!-- NOT WORKING HERE -->
-  {% for item in object_list %}
-  <h3>{{ item.title }}</h3>
+  <p>
+    <a href=" {% url 'index_view' %}">LIST Go back to all categories.</a>
+  </p>
+  {% for object in object_list %}
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <h4>{{ object.pick_category }}: <a href="{% url 'list_detail_view' object.pk %}">{{ object.title }}</a> </h4>
+        <h5>${{ object.price }}</h5>
+        <p>{{ object.description}}</p>
+      </div>
+    </div>
   {% endfor %}
 {% endblock %}
+
+<!-- Could not get the heading to list the object.
+
+<h2> {{ object_list.category.choose_main }}</h2>  -->

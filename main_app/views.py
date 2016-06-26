@@ -84,6 +84,15 @@ class SubCatListView(ListView):
         sub_cat = self.kwargs.get('subpk', None)
         return Listing.objects.filter(pick_category=sub_cat)
 
+
+class SubCatThumbView(SubCatListView):
+    template_name = 'thumb.html'
+
+
+class SubCatGalleryView(SubCatListView):
+    template_name = 'gallery.html'
+
+
 class CityListView(ListView):
     model = Location
     template_name = 'city_list_view.html'
