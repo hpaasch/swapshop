@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.views.generic.detail import DetailView
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
@@ -72,7 +73,6 @@ class CategoryListView(ListView):
     def get_queryset(self, **kwargs):
         main_cat_id = self.kwargs.get('catpk', None)
         return Listing.objects.filter(pick_category_id=main_cat_id)  # BROKEN: object_list is empty
-
         # return Listing.objects.filter(pick_category=main_cat_id)  # BROKEN: object_list is empty
 
 
@@ -96,3 +96,11 @@ class CityListingsView(ListView):
     def get_queryset(self, **kwargs):
         city_name = self.kwargs.get('pk',None)
         return Listing.objects.filter(city=city_name)
+
+
+class ListDetailView(DetailView):
+    model = Listing
+
+    def get_queryset(self, **kwargs):
+        listing_id = self.kwargs.get('pk', None)
+        return Listing.objects.filter(pk=listing_id)
