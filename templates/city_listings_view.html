@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h3>Listings for {{ listing.city }}</h3>
+  <h3>Listings for {{ city }}</h3>  <!-- CITY NOT DISPLAYING YET -->
   {% for object in object_list %}
     <h4>{{ object }}</h4>
   {% endfor %}

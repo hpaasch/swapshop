@@ -68,7 +68,7 @@ class ListingDeleteView(DeleteView):
 class CategoryListView(ListView):
     model = Listing
     # template_name = 'full_list.html'  EITHER OF these templates could work
-    template_name = 'category_list.html'
+    template_name = 'main_app/category_list.html'
 
     def get_queryset(self, **kwargs):
         category_id = self.kwargs.get('pk', None)
