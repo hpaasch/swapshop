@@ -3,10 +3,13 @@ from main_app.models import Listing, Category, TraderProfile, Location
 
 
 class ListingAdmin(admin.ModelAdmin):
-    list_display = ['title', 'pick_category']
+    list_display = ['title', 'pick_category', 'main_category']
     search_fields = ['title', 'description']
 
-admin.site.register(Listing)
+    def main_category(self, obj):
+        return obj.pick_category.choose_main
+
+admin.site.register(Listing, ListingAdmin)
 
 
 class CategoryAdmin(admin.ModelAdmin):
@@ -16,7 +19,7 @@ class CategoryAdmin(admin.ModelAdmin):
     class Meta:
         ordering = ['choose_main']
 
-admin.site.register(Category)
+admin.site.register(Category, CategoryAdmin)
 
 
 class TraderProfileAdmin(admin.ModelAdmin):

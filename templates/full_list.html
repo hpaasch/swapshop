@@ -7,11 +7,13 @@
     {% for object in object_list %}
         <div class="panel panel-default">
           <div class="panel-heading">
-            <h3 class="panel-title">{{ object.title }}</h3>
+            <h3 class="panel-title">{{ object.pick_category }}: <a href="#">{{ object.title }}</a></h3>
           </div>
           <div class="panel-body">
-              <img class='thumb' src="{{ object.photo_url }}" alt="" />
-              {{ object.description }} ${{ object.price }}  {{ object.seller }}  <img class='thumb' src="{{ object.seller.traderprofile.logo_url }}" alt="" />
+              <img class='small' src="{{ object.photo_url }}" alt="" />
+              {{ object.description }}
+              PRICE: ${{ object.price }}
+              SELLER: {{ object.seller }}  <img class='tiny' src="{{ object.seller.traderprofile.logo_url }}" alt="" />
           </div>
         </div>
     {% endfor %}

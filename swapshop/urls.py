@@ -19,6 +19,7 @@ urlpatterns = [
     url(r'^category/(?P<catpk>\d+)/$', views.CategoryListView.as_view(), name='category_list_view'),
     url(r'^city/$', views.CityListView.as_view(), name='city_list_view'),
     url(r'^city_list/(?P<pk>\d+)/$', views.CityListingsView.as_view(), name='city_listings_view'),
-    # url(r'^subcat/(?P<pk>\d+)/$', view.SubCatListView.as_view(), name='subcat_list_view'),
+    url(r'^subcat/(?P<subpk>\d+)/$', views.SubCatListView.as_view(), name='subcat_list_view'),
+
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -2,9 +2,8 @@
 
 {% block content %}
   <h1>Minnow Bucket Trading Post</h1>
-  <h3>All of whatever main category </h3>
-    {% for object in object_list %}
-      <h3>{{ object.title}}</h3>
-    {% endfor %}
-
+  <h3>All of whatever main category {{ object_list }}</h3>
+  {% for listing in object_list %}
+      <li>{{ listing.title }}</li>
+  {% endfor %}
 {% endblock %}

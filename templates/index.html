@@ -8,7 +8,7 @@
         {% for category in object_list %}
             <h4><a href="{% url 'category_list_view' category.pk %}">{{ category.new_category }}</a></h4>
                 {% for category in category.sub_choice.all %}
-                <li>{{ category.new_category }}</li>
+                <li><a href="{% url 'subcat_list_view' category.pk%}">{{ category.new_category }}</a></li>
                 {% endfor %}
         {% endfor %}
     </div>
