@@ -51,7 +51,26 @@ class TraderProfileUpdateView(UpdateView):
 
 class FullListView(ListView):
     model = Listing
-    template_name = 'full_list.html'
+    template_name = 'sorting/sort_low.html'
+
+    def get_queryset(self, **kwargs):
+        return Listing.objects.all().order_by('price')
+
+
+class SortNewView(ListView):
+    model = Listing
+    template_name = 'sorting/sort_new.html'
+
+    def get_queryset(self, **kwargs):
+        return Listing.objects.all().order_by('-created')
+
+
+class SortHighView(ListView):
+    model = Listing
+    template_name = 'sorting/sort_high.html'
+
+    def get_queryset(self, **kwargs):
+        return Listing.objects.all().order_by('-price')
 
 
 class ListingUpdateView(UpdateView):

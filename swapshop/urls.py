@@ -22,8 +22,8 @@ urlpatterns = [
     url(r'^subcat/(?P<subpk>\d+)/$', views.SubCatListView.as_view(), name='subcat_list_view'),
     url(r'^subcat/(?P<subpk>\d+)/$', views.SubCatThumbView.as_view(), name='subcat_thumb_view'),
     url(r'^subcat/(?P<subpk>\d+)/$', views.SubCatGalleryView.as_view(), name='subcat_gallery_view'),
-
-    
+    url(r'^sortnew/$', views.SortNewView.as_view(), name='sort_new_view'),
+    url(r'^sorthigh/$', views.SortHighView.as_view(), name='sort_high_view'),
     url(r'^detail/(?P<pk>\d+)/$', views.ListDetailView.as_view(), name='list_detail_view'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

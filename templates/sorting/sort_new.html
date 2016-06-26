@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h1>Minnow Bucket Trading Post</h1>
+<h3>The full big bucket of listings</h3>
+<p><a href="{% url 'full_list_view' %}"> Sort by lowest price</a> <a href="{% url 'sort_high_view' %}">Sort by Highest</a> Sorted by Newest</p>
+<div class="col-md-6">
+  {% for object in object_list %}
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">{{ object.pick_category }}: <a href="{% url 'list_detail_view' object.pk %}">{{ object.title }}</a></h3>
+        </div>
+        <div class="panel-body">
+            <a href="{% url 'list_detail_view' object.pk %}"><img class='small' src="{{ object.photo_url }}" alt="" /></a>
+            {{ object.description }}
+            PRICE: ${{ object.price }}
+        </div>
+      </div>
+  {% endfor %}
+{% endblock %}
