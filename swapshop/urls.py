@@ -17,7 +17,9 @@ urlpatterns = [
     url(r'^delete/(?P<pk>\d+)/$', views.ListingDeleteView.as_view(), name='listing_delete_view'),
     url(r'^profile_update/$', views.TraderProfileUpdateView.as_view(), name='trader_profile_update_view'),
     url(r'^category/(?P<pk>\d+)/$', views.CategoryListView.as_view(), name='category_list_view'),
-    # url(r'^city/(?P<pk>\d+)/$', views.CityListView.as_view(), name='city_list_view'),
+    url(r'^city/$', views.CityListView.as_view(), name='city_list_view'),
+    url(r'^city_list/(?P<pk>\d+)/$', views.CityListingsView.as_view(), name='city_listings_view'),
+
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

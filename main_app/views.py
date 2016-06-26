@@ -5,7 +5,7 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 
-from main_app.models import Listing, Category
+from main_app.models import Listing, Category, Location, TraderProfile
 
 
 class IndexView(ListView):
@@ -75,6 +75,15 @@ class CategoryListView(ListView):
         return Listing.objects.filter(pick_category=category_id)
 
 
-# class CityListView(ListView):
-#     model = Listing
-#     template_name
+class CityListView(ListView):
+    model = Location
+    template_name = 'city_list_view.html'
+
+
+class CityListingsView(ListView):
+    model = Listing
+    template_name = 'city_listings_view.html'
+
+    def get_queryset(self, **kwargs):
+        city_name = self.kwargs.get('pk',None)
+        return Listing.objects.filter(city=city_name)
