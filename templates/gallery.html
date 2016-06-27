@@ -1,7 +1,8 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h3>Gallery view</h3>
+<h3>Gallery view</h3>
+<p> <a href="{% url 'index_view' %}">Go back</a> to all categories and views </p>
     <div class="row">
       {% for object in object_list %}
         <div class="col-sm-6 col-md-4">

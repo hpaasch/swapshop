@@ -1,9 +1,6 @@
 {% extends "base.html" %}
 
 {% block content %}
-  <h1>Minnow Bucket Trading Post</h1>
-  <h3>Buy and sell stuff you need to be on the lake</h3>
-  <h4>Nothing over $9,999.99</h4>
     <div class="col-md-6">
         {% for category in object_list %}
             <h4>{{ category.new_category }}</h4>

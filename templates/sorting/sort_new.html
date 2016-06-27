@@ -1,8 +1,7 @@
 {% extends "base.html" %}
 
 {% block content %}
-<h1>Minnow Bucket Trading Post</h1>
-<h3>The full big bucket of listings</h3>
+<h4>The full big bucket of listings</h4>
 <p><a href="{% url 'full_list_view' %}"> Sort by lowest price</a> <a href="{% url 'sort_high_view' %}">Sort by Highest</a> Sorted by Newest</p>
 <div class="col-md-6">
   {% for object in object_list %}
