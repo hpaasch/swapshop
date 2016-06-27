@@ -85,7 +85,7 @@ class ListingDeleteView(DeleteView):
     success_url = reverse_lazy('account_profile_view')
 
 
-class CategoryListView(ListView):
+class CategoryListView(ListView):  # this view not currently working
     model = Listing
     template_name = 'main_app/category_list.html'
 
