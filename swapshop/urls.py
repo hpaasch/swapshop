@@ -6,7 +6,7 @@ from rest_framework.authtoken import views
 
 
 from main_app.views import IndexView, CreateAccountView, ListingCreateView, AccountProfileView, FullListView, ListingUpdateView, ListingDeleteView, TraderProfileUpdateView, CategoryListView, CityListView, CityListingsView, SubCatListView, SubCatThumbView, SubCatGalleryView, SortNewView, SortHighView, ListDetailView
-from shop_api.views import SwapShopListAPIView, SwapShopCategoryAPIView, SwapShopCategoryDetailAPIView, SwapShopSubCatAPIView, SwapShopSubCatDetailAPIView, SwapShopCatListAPIView
+from shop_api.views import SwapShopListAPIView, SwapShopDetailAPIView, SwapShopCategoryAPIView, SwapShopCategoryDetailAPIView, SwapShopCategoryListAPIView, SwapShopSubCatAPIView, SwapShopSubCatDetailAPIView, SwapShopSubCatListAPIView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -30,12 +30,14 @@ urlpatterns = [
     url(r'^detail/(?P<pk>\d+)/$', ListDetailView.as_view(), name='list_detail_view'),
 
     url(r'^api/listings/$', SwapShopListAPIView.as_view(), name='swapshop_list_api_view'),
+    url(r'^api/listings/(?P<pk>\d+)/$', SwapShopDetailAPIView.as_view(), name='swapshop_detail_api_view'),
     url(r'^api/main_categories/$', SwapShopCategoryAPIView.as_view(), name='swapshop_category_api_view'),
     url(r'^api/main_categories/(?P<pk>\d+)/$', SwapShopCategoryDetailAPIView.as_view(), name='swapshop_category_detail_api_view'),
-    url(r'^api/main_categories/(?P<pk>\d+)/listings/$', SwapShopCatListAPIView.as_view(), name='swapshop_catlist_api_view'),
+    url(r'^api/main_categories/(?P<pk>\d+)/listings/$', SwapShopCategoryListAPIView.as_view(), name='swapshop_category_list_api_view'),
 
     url(r'^api/sub_categories/$', SwapShopSubCatAPIView.as_view(), name='swapshop_subcat_api_view'),
     url(r'^api/sub_categories/(?P<pk>\d+)/$', SwapShopSubCatDetailAPIView.as_view(), name='swapshop_subcat_detail_api_view'),
+    url(r'^api/sub_categories/(?P<pk>\d+)/listings/$', SwapShopSubCatListAPIView.as_view(), name='swapshop_catlist_api_view'),
 
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
