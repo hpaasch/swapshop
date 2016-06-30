@@ -6,7 +6,7 @@ from rest_framework.authtoken import views
 
 
 from main_app.views import IndexView, CreateAccountView, ListingCreateView, AccountProfileView, FullListView, ListingUpdateView, ListingDeleteView, TraderProfileUpdateView, CategoryListView, CityListView, CityListingsView, SubCatListView, SubCatThumbView, SubCatGalleryView, SortNewView, SortHighView, ListDetailView
-from shop_api.views import SwapShopListAPIView
+from shop_api.views import SwapShopListAPIView, SwapShopCategoryAPIView, SwapShopCategoryDetailAPIView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -28,6 +28,8 @@ urlpatterns = [
     url(r'^sortnew/$', SortNewView.as_view(), name='sort_new_view'),
     url(r'^sorthigh/$', SortHighView.as_view(), name='sort_high_view'),
     url(r'^detail/(?P<pk>\d+)/$', ListDetailView.as_view(), name='list_detail_view'),
-    url(r'^listings/api/$', SwapShopListAPIView.as_view(), name='swapshop_list_api_view'),
+    url(r'^api/listings/$', SwapShopListAPIView.as_view(), name='swapshop_list_api_view'),
+    url(r'^api/main_categories/$', SwapShopCategoryAPIView.as_view(), name='swapshop_category_api_view'),
+    url(r'^api/main_categories/(?P<pk>\d+)/$', SwapShopCategoryDetailAPIView.as_view(), name='swapshop_category_detail_api_view'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
