@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save  # very commonly used
 from django.dispatch import receiver  # goes with post_save and other signals
+from rest_framework.authtoken.models import Token
 
 
 class Location(models.Model):
@@ -66,3 +67,10 @@ def create_user_profile(**kwargs):
 
     if created:
         TraderProfile.objects.create(user=instance)  # hooks profile to user
+
+@receiver(post_save, sender='auth.User')
+def create_token(**kwargs): # a shortcut pass in
+    created = kwargs.get("created")  # boilerplate
+    instance = kwargs.get("instance")  # boilerplate
+    if created:
+        Token.objects.create(user=instance)  # yep. standard.

@@ -40,6 +40,8 @@ INSTALLED_APPS = [
     'main_app',
     'rest_framework',
     'shop_api',
+    'rest_framework.authtoken',
+
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -126,3 +128,12 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR
 
 USE_THOUSAND_SEPARATOR = True
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': (
+        'rest_framework.authentication.TokenAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+
+    )
+
+}

@@ -1,3 +1,16 @@
+===================
+API assignment:
+===================
+Users can get an API token by going to http://localhost:8000/api/register
+
+Designated Superusers can edit Categories and Subcategories in the 
+
+
+
+===================
+Earlier assignment:
+===================
+
 This application allows people to buy and sell stuff they need at the lake. Those
 without accounts can browse listings by city or category, sorted by
 newest/cheapest/most expensive. They can see a quick list view, or thumbnails

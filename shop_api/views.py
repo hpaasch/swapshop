@@ -1,23 +1,27 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from rest_framework import generics
+from rest_framework.permissions import IsAuthenticatedOrReadOnly, IsAdminUser
+from shop_api.permissions import IsOwnerOrReadOnly
 
 import json
 from main_app.models import Listing, Category
-from shop_api.serializers import SwapShopListingSerializer, SwapShopCategorySerializer
+from shop_api.serializers import SwapShopListingSerializer, SwapShopCategorySerializer, CreateUserSerializer
 
 
 class SwapShopListAPIView(generics.ListCreateAPIView):
     queryset = Listing.objects.all()
     serializer_class = SwapShopListingSerializer
+    permission_classes = (IsAuthenticatedOrReadOnly,)
 
 
 class SwapShopDetailAPIView(generics.RetrieveUpdateAPIView):
     queryset = Listing.objects.all()
     serializer_class = SwapShopListingSerializer
+    permission_classes = (IsOwnerOrReadOnly,)
 
 
-class SwapShopCategoryAPIView(generics.ListCreateAPIView):
+class SwapShopCategoryAPIView(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = SwapShopCategorySerializer
 
@@ -25,7 +29,16 @@ class SwapShopCategoryAPIView(generics.ListCreateAPIView):
         return Category.objects.filter(choose_main=None)
 
 
-class SwapShopCategoryDetailAPIView(generics.RetrieveUpdateAPIView):
+class SwapShopCategoryCreateAPIView(generics.CreateAPIView):
+    queryset = Category.objects.all()
+    serializer_class = SwapShopCategorySerializer
+    permission_classes = (IsAdminUser,)  # hack this to be superuser?
+
+    def get_queryset(self):
+        return Category.objects.filter(choose_main=None)
+
+
+class SwapShopCategoryDetailAPIView(generics.RetrieveAPIView):
     queryset = Category.objects.all()
     serializer_class = SwapShopCategorySerializer
 
@@ -33,7 +46,7 @@ class SwapShopCategoryDetailAPIView(generics.RetrieveUpdateAPIView):
         return Category.objects.filter(choose_main=None)
 
 
-class SwapShopCategoryListAPIView(generics.ListCreateAPIView):
+class SwapShopCategoryListAPIView(generics.ListAPIView):
     queryset = Listing.objects.all()
     serializer_class = SwapShopListingSerializer
 
@@ -42,7 +55,7 @@ class SwapShopCategoryListAPIView(generics.ListCreateAPIView):
         return Listing.objects.filter(pick_category__choose_main=main_cat_id)
 
 
-class SwapShopSubCatAPIView(generics.ListCreateAPIView):
+class SwapShopSubCatAPIView(generics.ListAPIView):
     queryset = Category.objects.all()
     serializer_class = SwapShopCategorySerializer
 
@@ -50,15 +63,19 @@ class SwapShopSubCatAPIView(generics.ListCreateAPIView):
         return Category.objects.exclude(choose_main=None)
 
 
-class SwapShopSubCatDetailAPIView(generics.RetrieveUpdateAPIView):
+class SwapShopSubCatDetailAPIView(generics.RetrieveAPIView):
     queryset = Category.objects.all()
     serializer_class = SwapShopCategorySerializer
 
 
-class SwapShopSubCatListAPIView(generics.ListCreateAPIView):
+class SwapShopSubCatListAPIView(generics.ListAPIView):
     queryset = Listing.objects.all()
     serializer_class = SwapShopListingSerializer
 
     def get_queryset(self):
         sub_cat_id = self.kwargs.get('pk')
         return Listing.objects.filter(pick_category=sub_cat_id)
+
+
+class SwapShopRegisterAPIView(generics.CreateAPIView):
+    serializer_class = CreateUserSerializer
