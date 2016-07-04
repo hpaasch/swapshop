@@ -6,7 +6,7 @@ from rest_framework.authtoken import views
 
 
 from main_app.views import IndexView, CreateAccountView, ListingCreateView, AccountProfileView, FullListView, ListingUpdateView, ListingDeleteView, TraderProfileUpdateView, CategoryListView, CityListView, CityListingsView, SubCatListView, SubCatThumbView, SubCatGalleryView, SortNewView, SortHighView, ListDetailView
-from shop_api.views import SwapShopCategoryCreateAPIView, SwapShopRegisterAPIView, SwapShopListAPIView, SwapShopDetailAPIView, SwapShopCategoryAPIView, SwapShopCategoryDetailAPIView, SwapShopCategoryListAPIView, SwapShopSubCatAPIView, SwapShopSubCatDetailAPIView, SwapShopSubCatListAPIView
+from shop_api.views import SwapShopCategoryCreateAPIView, SwapShopSubCatCreateAPIView, SwapShopRegisterAPIView, SwapShopListAPIView, SwapShopDetailAPIView, SwapShopCategoryAPIView, SwapShopCategoryDetailAPIView, SwapShopCategoryListAPIView, SwapShopSubCatAPIView, SwapShopSubCatDetailAPIView, SwapShopSubCatListAPIView
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
@@ -41,5 +41,6 @@ urlpatterns = [
     url(r'^api/sub_categories/$', SwapShopSubCatAPIView.as_view(), name='swapshop_subcat_api_view'),
     url(r'^api/sub_categories/(?P<pk>\d+)/$', SwapShopSubCatDetailAPIView.as_view(), name='swapshop_subcat_detail_api_view'),
     url(r'^api/sub_categories/(?P<pk>\d+)/listings/$', SwapShopSubCatListAPIView.as_view(), name='swapshop_catlist_api_view'),
+    url(r'^api/sub_categories/add/$', SwapShopSubCatCreateAPIView.as_view(), name='swapshop_subcat_create_view'),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

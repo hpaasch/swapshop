@@ -5,6 +5,8 @@ from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic.detail import DetailView
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
+# from django.forms import ModelForm
+
 
 from main_app.models import Listing, Category, Location, TraderProfile
 

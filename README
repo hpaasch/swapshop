@@ -1,11 +1,19 @@
 ===================
 API assignment:
 ===================
-Users can get an API token by going to http://localhost:8000/api/register
 
-Designated Superusers can edit Categories and Subcategories in the 
+The Minnow Bucket Trading Post app now has API endpoints that allow the user to
+view categories, subcategories and listings in lists as well as in detail views.
+A logged in user can also create new listings and modify their own existing items.
 
+Users can create an account and get an API token by going to
+http://localhost:8000/api/register.
 
+The API successfully allows only designated superusers to add categories and
+subcategories in the API. The example is user josie, who is now a superuser
+and who added the sub-category Floating under Gear. One problem: If the user is
+NOT a superuser and tries to access the "add" URL, they receive an error instead
+of a redirect.
 
 ===================
 Earlier assignment:
